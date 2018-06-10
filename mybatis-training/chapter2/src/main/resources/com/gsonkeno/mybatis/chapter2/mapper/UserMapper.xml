@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gsonkeno.mybatis.chapter2.mapper.UserMapper">
+
+    <resultMap id="userMap" type="com.gsonkeno.mybatis.chapter2.model.SysUser">
+        <id property="id" column="id"></id>
+        <result property="userName" column="user_name"></result>
+        <result property="userPassword" column="user_password"></result>
+        <result property="userEmail" column="user_email"></result>
+        <result property="userInfo" column="user_info"></result>
+        <result property="headImg"  column="head_img" jdbcType="BLOB"></result>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"></result>
+    </resultMap>
+
+     <update id="updateById">
+        update sys_user
+        set user_name = #{userName},
+        user_password = #{userPassword},
+        user_email = #{userEmail},
+        user_info = #{userInfo},
+        head_img = #{headImg,jdbcType=BLOB},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="userMap">
+        select * from sys_user where id = #{id}
+    </select>
+
+    <select id="selectAll" resultType="com.gsonkeno.mybatis.chapter2.model.SysUser">
+        select id,
+            user_name userName,
+            user_password userPassword,
+            user_email userEmail,
+            user_info userInfo,
+            head_img headImg,
+            create_time createTime
+        from sys_user
+    </select>
+
+    <select id="selectAll2" resultMap="userMap">
+        select id,
+        user_name ,
+        user_password ,
+        user_email ,
+        user_info ,
+        head_img ,
+        create_time
+        from sys_user
+    </select>
+
+    <select id="selectRolesByUserId" resultType="com.gsonkeno.mybatis.chapter2.model.SysRole">
+        select
+            r.id,
+            r.role_name roleName,
+            r.enabled,
+            r.create_by createBy,
+            r.create_time createTime,
+            u.user_name as "user.userName",
+            u.user_email as "user.userEmail"
+        FROM sys_user u
+        INNER JOIN sys_user_role ur on u.id = ur.user_id
+        INNER JOIN sys_role r on ur.role_id = r.id
+        WHERE u.id = #{userId}
+    </select>
+    
+    <update id="batchUpdate" parameterType="com.gsonkeno.mybatis.chapter2.model.SysUser">
+        <foreach collection="list" item="user" separator=";">
+            UPDATE sys_user
+            <if test="user.userPassword != null">
+                SET user_password = #{user.userPassword}
+            </if>
+            WHERE id = #{user.id}
+        </foreach>
+    </update>
+
+
+
+</mapper>

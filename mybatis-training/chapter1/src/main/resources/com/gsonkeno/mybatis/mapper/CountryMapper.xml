@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gsonkeno.mybatis.mapper.CountryMapper">
+    <!--select元素定义了一个select查询,id属性定义了当前select查询的唯一一个id
+        resultType属性指定了当前查询的返回值类型,mybatis-config.xml文件中配置的别名
+        正是对Country类做出限定-->
+    <select id="selectAll" resultType="Country">
+        select id, countryName, countryCode from country
+    </select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off" monitorInterval="1800">
+
+    <properties>
+        <property name="LOG_HOME">/data/logs/log4j-training</property>
+        <property name="APP_LOG_NAME">log4j-training2</property>
+    </properties>
+
+    <Appenders>
+        <Console name="CONSOLE"   target="SYSTEM_OUT">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%class{2}:%L %M] - %msg%n" />
+        </Console>
+
+        <!-- 基本日志 -->
+        <RollingRandomAccessFile name="APP_ROLLING"
+                                 fileName="${LOG_HOME}/${APP_LOG_NAME}.log" filePattern="${LOG_HOME}/${date:yyyy-MM}/${APP_LOG_NAME}-%d{yyyy-MM-dd}.log">
+            <PatternLayout
+                    pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%class{2}:%L %M] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 3rdparty Loggers -->
+        <logger name="org.springframework.core" level="info">
+        </logger>
+        <logger name="org.springframework.beans" level="info">
+        </logger>
+        <logger name="org.springframework.context" level="info">
+        </logger>
+        <logger name="org.springframework.web" level="info">
+        </logger>
+        <logger name="org.springframework.data" level="info">
+        </logger>
+
+
+        <logger name="org.apache.http" level="warn">
+        </logger>
+        <root level="info">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="APP_ROLLING" />
+        </root>
+    </Loggers>
+</Configuration>

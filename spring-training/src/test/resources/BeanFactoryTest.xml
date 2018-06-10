@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myTestBean" class="com.gsonkeno.spring.bean.MyTestBean" name="myTestBean3" >
+    </bean>
+    <!--设置bean的别名-->
+    <alias name="myTestBean" alias="myTestBean1"></alias>
+    <alias name="myTestBean" alias="myTestBean2"></alias>
+</beans>
