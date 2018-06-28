@@ -19,6 +19,7 @@
         <module>solr-training</module>
         <module>jsoup-training</module>
         <module>log4j-training</module>
+        <module>json-training</module>
     </modules>
     <packaging>pom</packaging>
 
