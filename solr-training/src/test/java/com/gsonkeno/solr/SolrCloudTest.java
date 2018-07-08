@@ -61,4 +61,22 @@ public class SolrCloudTest {
         }
         System.out.println(header.get("params"));
     }
+
+    @Test
+    public void testQueryOr() throws IOException, SolrServerException {
+
+        SolrQuery query = new SolrQuery();
+        query.setQuery("shop_name:(搜款网 AND 饺子)"); //搜索
+        query.set("q.op", "AND");
+        QueryResponse response = client.query(query);
+
+        System.out.println(response.toString() + "\n");
+
+        SolrDocumentList docs = response.getResults();
+        NamedList<Object> header = response.getHeader();
+        for (SolrDocument doc : docs) {
+            System.out.println(doc.getFieldValueMap());
+        }
+        System.out.println(header.get("params"));
+    }
 }
