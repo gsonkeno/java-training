@@ -6,7 +6,7 @@ import org.junit.Test;
 public class StringTest {
 
     /**
-     * String为空时取默认值
+     * String为"空"时取默认值
      */
     @Test
     public void testDefault(){
@@ -28,7 +28,6 @@ public class StringTest {
         //String为null或长度为0或内部有空字符时，返回defaultStr
         System.out.println(StringUtils.defaultIfBlank(r,"d"));
         System.out.println(StringUtils.defaultIfBlank(s,"d1"));
-
 
     }
 }
