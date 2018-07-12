@@ -10,5 +10,8 @@ public class IkAnalyzerTest {
         System.out.println(IkAnalyzerUtils.analyzer("+716+"));
         System.out.println(IkAnalyzerUtils.analyzer("$716$"));
         System.out.println(IkAnalyzerUtils.analyzer("^716^"));
+
+        System.out.println(IkAnalyzerUtils.analyzer("国大 -716^"));
+
     }
 }
