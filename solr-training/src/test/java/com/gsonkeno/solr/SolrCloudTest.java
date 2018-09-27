@@ -20,7 +20,7 @@ public class SolrCloudTest {
     @Before
     public void initClient(){
         client = new CloudSolrClient.Builder().withZkHost("127.0.0.1:2181/rc").build();
-        client.setDefaultCollection("item_collection");
+        client.setDefaultCollection("item_v");
     }
 
     public static void main(String[] args) throws IOException, SolrServerException {
@@ -78,5 +78,36 @@ public class SolrCloudTest {
             System.out.println(doc.getFieldValueMap());
         }
         System.out.println(header.get("params"));
+    }
+
+    @Test
+    public void testQueryAnd() throws IOException, SolrServerException {
+
+        SolrQuery query = new SolrQuery();
+        String url = "https://www.vvic.com/uploads/user/394107/WANE1461073413806284077.jpg";
+        url = url.replaceAll("//", "");
+        url = url.replaceAll(":", "\\:");
+        System.out.println(url);
+        query.setQuery("item_title:毛领毛呢外套女中长款2018韩版新款秋冬学生加厚过膝双面呢子大衣 OR img_url:" + url); //搜索
+        query.set("q.op", "AND");
+        QueryResponse response = client.query(query);
+
+        System.out.println(response.toString() + "\n");
+
+        SolrDocumentList docs = response.getResults();
+        NamedList<Object> header = response.getHeader();
+        for (SolrDocument doc : docs) {
+            System.out.println(doc.getFieldValueMap());
+        }
+        System.out.println(header.get("params"));
+    }
+
+    @Test
+    public void testReplaceAll(){
+        String url = "https://www.vvic.com/uploads/user/394107/WANE1461073413806284077.jpg";
+        System.out.println(url);
+        url = url.replaceAll("//", "");
+        url = url.replaceAll(":", "\\\\\\\\:");
+        System.out.println(url);
     }
 }

@@ -6,7 +6,7 @@ import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
-import java.util.LinkedList;
+import MyLinkedList;
 import java.util.Vector;
 
 /**
