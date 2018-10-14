@@ -1,7 +1,7 @@
 package com.gsonkeno.jdk.training.concurrent.pool;
 
 import java.sql.Connection;
-import MyLinkedList;
+import java.util.LinkedList;
 
 /**
  * Created by gaosong on 2017-09-01

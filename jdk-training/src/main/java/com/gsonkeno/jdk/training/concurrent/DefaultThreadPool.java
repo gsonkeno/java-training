@@ -2,7 +2,7 @@ package com.gsonkeno.jdk.training.concurrent;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import MyLinkedList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 

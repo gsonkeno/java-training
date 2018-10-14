@@ -16,7 +16,6 @@
         <module>dsaa-training</module>
         <module>design-pattern-training</module>
         <module>mybatis-training</module>
-        <module>solr-training</module>
         <module>jsoup-training</module>
         <module>log4j-training</module>
         <module>json-training</module>
