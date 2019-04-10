@@ -1,5 +1,6 @@
 package com.gsonkeno.util;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.commons.lang3.ObjectUtils;
 import org.junit.Test;
 
@@ -36,9 +37,36 @@ public class ObjectTest {
      */
     @Test
     public void testDefaultIfNull(){
+        String t = null;
+        System.out.println(ObjectUtils.defaultIfNull(t,"5"));
         Object m = null;
         Object o = ObjectUtils.defaultIfNull(m, "");
         System.out.println(o);
+    }
+
+    @Test
+    public void test(){
+        Boolean m  = null;
+        assert  m =  true;
+        System.out.println(m);
+        // nullGreater = true时,null比非null要大
+        // nullGreater = false时,null比非null要小
+        System.out.println(ObjectUtils.compare(-1,null,true));
+        System.out.println(ObjectUtils.compare(-1,null,false));
+
+        Boolean result = true;
+        boolean cConst = const1(result);
+        boolean aConst = ObjectUtils.CONST(result);
+        System.out.println(aConst);
+
+        result = false;
+        System.out.println(result);
+        System.out.println(aConst);
+        System.out.println(cConst);
+    }
+
+    static boolean const1(boolean result){
+        return result;
     }
 
 
